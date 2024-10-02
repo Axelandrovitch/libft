@@ -14,19 +14,21 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t		i;
 	void		*ptr;
-	char		*byte_ptr;
 
-	i = 0;
+	if (nmemb == 0 || size == 0)
+	{
+		ptr = malloc(1);
+		if (ptr == NULL)
+			return (NULL);
+		*(unsigned char *)ptr = 0;
+		return (ptr);
+	}
+	if (size != 0 && (nmemb > (size_t) -1 / size))
+		return (NULL);
 	ptr = malloc(nmemb * size);
 	if (ptr == NULL)
 		return (NULL);
-	byte_ptr = (char *) ptr;
-	while (i < (nmemb * size))
-	{
-		byte_ptr[i] = '\0';
-		i++;
-	}
+	ft_bzero(ptr, nmemb * size);
 	return (ptr);
 }

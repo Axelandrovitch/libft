@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	count_words(const char *str, char c)
+static int	count_words(const char *str, char c)
 {
 	int	i;
 	int	trigger;
@@ -33,13 +33,15 @@ int	count_words(const char *str, char c)
 	return (i);
 }
 
-char	*word_dup(const char *str, int start, int finish)
+static char	*word_dup(const char *str, int start, int finish)
 {
 	char	*word;
 	int		i;
 
 	i = 0;
 	word = malloc((finish - start + 1) * sizeof(char));
+	if (word == NULL)
+		return (NULL);
 	while (start < finish)
 		word[i++] = str[start++];
 	word[i] = '\0';
@@ -55,7 +57,7 @@ char	**ft_split(char const *s, char c)
 
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!s || !split)
-		return (0);
+		return (NULL);
 	i = 0;
 	j = 0;
 	index = -1;

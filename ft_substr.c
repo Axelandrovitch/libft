@@ -18,8 +18,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	opt_len;
 
-	if (s == NULL || start >= ft_strlen(s))
+	if (s == NULL) 
 		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_calloc(1, sizeof(char)));
 	opt_len = ft_strlen(s + start);
 	if (opt_len < len)
 		len = opt_len;
