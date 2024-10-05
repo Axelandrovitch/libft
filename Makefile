@@ -12,10 +12,10 @@ BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) Makefile libft.h
 	ar rc $(NAME) $(OBJ)
 
-bonus: $(NAME) $(BONUS_OBJ)
+bonus: $(NAME) $(BONUS_OBJ) Makefile libft.h
 	ar rc $(NAME) $(BONUS_OBJ)
 
 %.o: %.c
